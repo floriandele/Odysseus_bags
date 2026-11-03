@@ -131,6 +131,13 @@ button {
   transition: opacity 0.18s ease, transform 0.18s ease, visibility 0s linear 0s;
 }
 
+/* Ensure the service-menu container itself is above sibling cards when open */
+.service-menu:hover,
+.service-menu:focus-within {
+  z-index: 200;
+  position: relative;
+}
+
 /* Touch fallback: on hover-none devices, show inline */
 @media (hover: none) {
   .service-menu__dropdown {
@@ -170,7 +177,11 @@ button {
 }
 
 /* ─── Product card transitions — GPU-accelerated ─────────────────────────── */
-[data-testid="product-card"] {
+/* will-change: transform is intentionally omitted from the base rule to avoid
+   creating a permanent stacking context on every card, which would cause the
+   service-menu dropdown (z-index: 100) to be clipped by cards in lower grid rows.
+   The translateY transform on hover is enough for GPU compositing. */
+[data-testid="product-card"]:hover {
   will-change: transform;
 }
 
