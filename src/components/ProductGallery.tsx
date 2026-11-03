@@ -60,7 +60,7 @@ function ProductCard({
         background: "var(--color-card)",
         borderRadius: "var(--radius-lg)",
         boxShadow: hovered ? "var(--shadow-lg)" : "var(--shadow-md)",
-        overflow: "hidden",
+        overflow: "visible",
         display: "flex",
         flexDirection: "column",
         transition: "transform 0.18s ease, box-shadow 0.18s ease",
@@ -81,6 +81,7 @@ function ProductCard({
           justifyContent: "center",
           overflow: "hidden",
           position: "relative",
+          borderRadius: "var(--radius-lg) var(--radius-lg) 0 0",
         }}
       >
         {!imgError && product.image ? (
