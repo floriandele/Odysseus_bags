@@ -46,6 +46,11 @@ function ProductCard({
   onNavigateCart: () => void;
 }): React.ReactElement {
   const [imgError, setImgError] = React.useState(false);
+  const [hovered, setHovered] = React.useState(false);
+
+  // Validate price defensively — guard against NaN/Infinity coming from external data
+  const safePrice =
+    Number.isFinite(product.price) && product.price >= 0 ? product.price : 0;
 
   return (
     <article
@@ -54,22 +59,17 @@ function ProductCard({
       style={{
         background: "var(--color-card)",
         borderRadius: "var(--radius-lg)",
-        boxShadow: "var(--shadow-md)",
+        boxShadow: hovered ? "var(--shadow-lg)" : "var(--shadow-md)",
         overflow: "hidden",
         display: "flex",
         flexDirection: "column",
         transition: "transform 0.18s ease, box-shadow 0.18s ease",
         border: "1px solid var(--color-border)",
         opacity: product.inStock ? 1 : 0.75,
+        transform: hovered ? "translateY(-4px)" : "translateY(0)",
       }}
-      onMouseEnter={(e) => {
-        (e.currentTarget as HTMLElement).style.transform = "translateY(-4px)";
-        (e.currentTarget as HTMLElement).style.boxShadow = "var(--shadow-lg)";
-      }}
-      onMouseLeave={(e) => {
-        (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
-        (e.currentTarget as HTMLElement).style.boxShadow = "var(--shadow-md)";
-      }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
     >
       {/* Product image */}
       <div
@@ -87,6 +87,7 @@ function ProductCard({
           <img
             src={product.image}
             alt={product.name}
+            crossOrigin="anonymous"
             onError={() => setImgError(true)}
             loading="lazy"
             style={{
@@ -178,9 +179,9 @@ function ProductCard({
             color: "var(--color-primary)",
             marginTop: "4px",
           }}
-          aria-label={`Prix : ${product.price} €`}
+          aria-label={`Prix : ${safePrice} €`}
         >
-          {product.price.toLocaleString("fr-FR")} €
+          {safePrice.toLocaleString("fr-FR")} €
         </div>
 
         {/* Services dropdown */}

@@ -1,0 +1,272 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" width="1200" height="600">
+  <defs>
+    <!-- Sky gradient photorealistic -->
+    <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2c5f8a"/>
+      <stop offset="40%" stop-color="#5b8fb9"/>
+      <stop offset="75%" stop-color="#c4a882"/>
+      <stop offset="100%" stop-color="#e8c98a"/>
+    </linearGradient>
+    <!-- Sea gradient photorealistic -->
+    <linearGradient id="seaGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a5276"/>
+      <stop offset="50%" stop-color="#1e6091"/>
+      <stop offset="100%" stop-color="#0d3b57"/>
+    </linearGradient>
+    <!-- Wood grain gradient for ship deck -->
+    <linearGradient id="woodGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#8b6914"/>
+      <stop offset="30%" stop-color="#a07c24"/>
+      <stop offset="60%" stop-color="#8b6914"/>
+      <stop offset="100%" stop-color="#6b4f10"/>
+    </linearGradient>
+    <!-- Leather bag main gradient -->
+    <radialGradient id="leatherMain" cx="40%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#8b5e3c"/>
+      <stop offset="40%" stop-color="#6b4226"/>
+      <stop offset="100%" stop-color="#3d2010"/>
+    </radialGradient>
+    <!-- Leather flap gradient -->
+    <radialGradient id="leatherFlap" cx="50%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#9e6b45"/>
+      <stop offset="50%" stop-color="#7a4e2d"/>
+      <stop offset="100%" stop-color="#4a2d14"/>
+    </radialGradient>
+    <!-- Leather side gradient -->
+    <linearGradient id="leatherSide" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#3d2010"/>
+      <stop offset="100%" stop-color="#5c3218"/>
+    </linearGradient>
+    <!-- Metal hardware gradient -->
+    <linearGradient id="goldGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f4d03f"/>
+      <stop offset="30%" stop-color="#d4ac0d"/>
+      <stop offset="70%" stop-color="#b8960c"/>
+      <stop offset="100%" stop-color="#9a7d0a"/>
+    </linearGradient>
+    <!-- Sun glow -->
+    <radialGradient id="sunGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#fff7d6" stop-opacity="0.95"/>
+      <stop offset="40%" stop-color="#f9d543" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#e09b1a" stop-opacity="0"/>
+    </radialGradient>
+    <!-- Water reflection -->
+    <linearGradient id="reflectGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#d4a843" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#d4a843" stop-opacity="0"/>
+    </linearGradient>
+    <!-- Rope texture -->
+    <linearGradient id="ropeGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#c4a35a"/>
+      <stop offset="50%" stop-color="#a88240"/>
+      <stop offset="100%" stop-color="#c4a35a"/>
+    </linearGradient>
+    <!-- Shadow filter -->
+    <filter id="dropShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="4" dy="8" stdDeviation="6" flood-color="rgba(0,0,0,0.45)"/>
+    </filter>
+    <!-- Soft glow filter -->
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <!-- Texture pattern for wood planks -->
+    <pattern id="woodPlank" x="0" y="0" width="40" height="4" patternUnits="userSpaceOnUse">
+      <rect width="40" height="4" fill="#8b6914"/>
+      <rect y="0" width="40" height="1" fill="#9a7a20" opacity="0.5"/>
+      <rect y="3" width="40" height="1" fill="#6b4f0f" opacity="0.5"/>
+    </pattern>
+  </defs>
+
+  <!-- ========== BACKGROUND: SKY ========== -->
+  <rect width="1200" height="600" fill="url(#skyGrad)"/>
+
+  <!-- Sun (setting / golden hour) -->
+  <circle cx="920" cy="130" r="120" fill="url(#sunGrad)" filter="url(#glow)"/>
+  <circle cx="920" cy="130" r="58" fill="#fff7a0" opacity="0.85"/>
+  <circle cx="920" cy="130" r="42" fill="#fffccc" opacity="0.95"/>
+
+  <!-- Atmospheric haze near horizon -->
+  <rect x="0" y="280" width="1200" height="80" fill="#e8c98a" opacity="0.25"/>
+
+  <!-- Distant mountains / coastline silhouettes -->
+  <path d="M0,340 Q80,295 160,310 Q220,290 290,295 Q350,265 400,280 Q440,270 480,285 Q530,260 580,278 Q620,268 660,280 Q700,265 740,272 Q800,255 860,268 Q900,258 940,270 Q990,255 1030,268 Q1080,260 1120,272 L1200,280 L1200,360 L0,360 Z" fill="#4a6741" opacity="0.5"/>
+  <path d="M0,350 Q60,328 130,338 Q200,325 260,332 Q320,318 380,330 Q450,320 520,328 Q590,312 650,325 Q720,315 800,322 Q870,310 930,320 Q990,308 1060,318 L1200,315 L1200,370 L0,370 Z" fill="#3d5634" opacity="0.6"/>
+
+  <!-- White clouds (photorealistic fluffy) -->
+  <g opacity="0.82">
+    <ellipse cx="130" cy="92" rx="110" ry="38" fill="white" opacity="0.7"/>
+    <ellipse cx="155" cy="75" rx="80" ry="32" fill="white" opacity="0.8"/>
+    <ellipse cx="95" cy="85" rx="75" ry="28" fill="white" opacity="0.65"/>
+    <ellipse cx="130" cy="92" rx="110" ry="38" fill="white" opacity="0.3"/>
+  </g>
+  <g opacity="0.7">
+    <ellipse cx="400" cy="65" rx="90" ry="30" fill="white" opacity="0.7"/>
+    <ellipse cx="420" cy="50" rx="65" ry="26" fill="white" opacity="0.8"/>
+    <ellipse cx="380" cy="60" rx="55" ry="22" fill="white" opacity="0.6"/>
+  </g>
+  <g opacity="0.6">
+    <ellipse cx="700" cy="48" rx="75" ry="26" fill="white" opacity="0.65"/>
+    <ellipse cx="720" cy="36" rx="55" ry="22" fill="white" opacity="0.75"/>
+  </g>
+
+  <!-- ========== SEA ========== -->
+  <rect x="0" y="360" width="1200" height="240" fill="url(#seaGrad)"/>
+
+  <!-- Sun reflection on sea -->
+  <ellipse cx="920" cy="380" rx="80" ry="12" fill="url(#reflectGrad)" opacity="0.6"/>
+  <path d="M820,365 Q920,372 1020,365 L1040,400 Q930,395 810,400 Z" fill="#d4a843" opacity="0.15"/>
+
+  <!-- Sea waves -->
+  <path d="M0,370 Q60,360 120,370 Q180,380 240,370 Q300,360 360,370 Q420,380 480,370 Q540,360 600,370 Q660,380 720,370 Q780,360 840,370 Q900,380 960,370 Q1020,360 1080,370 Q1140,380 1200,370 L1200,380 Q1140,392 1080,382 Q1020,372 960,382 Q900,392 840,382 Q780,372 720,382 Q660,392 600,382 Q540,372 480,382 Q420,392 360,382 Q300,372 240,382 Q180,392 120,382 Q60,372 0,382 Z" fill="white" opacity="0.07"/>
+  <path d="M0,390 Q80,380 160,390 Q240,400 320,390 Q400,380 480,390 Q560,400 640,390 Q720,380 800,390 Q880,400 960,390 Q1040,380 1120,390 L1200,388 L1200,402 Q1120,412 1040,402 Q960,392 880,402 Q800,412 720,402 Q640,392 560,402 Q480,412 400,402 Q320,392 240,402 Q160,412 80,402 Q40,397 0,402 Z" fill="white" opacity="0.05"/>
+  <path d="M0,415 Q100,404 200,415 Q300,426 400,415 Q500,404 600,415 Q700,426 800,415 Q900,404 1000,415 Q1100,426 1200,415 L1200,425 Q1100,436 1000,425 Q900,415 800,425 Q700,436 600,425 Q500,415 400,425 Q300,436 200,425 Q100,415 0,425 Z" fill="white" opacity="0.04"/>
+
+  <!-- Distant Greek island silhouette -->
+  <path d="M60,345 Q100,320 150,328 Q180,315 220,322 Q255,310 280,320 L290,345 L50,345 Z" fill="#5d7a50" opacity="0.45"/>
+
+  <!-- ========== GREEK SHIP DECK (lower portion) ========== -->
+  <!-- Ship hull -->
+  <path d="M-50,530 Q200,500 600,492 Q1000,484 1250,510 L1250,600 L-50,600 Z" fill="#4a3010" opacity="0.95"/>
+  <!-- Deck surface with wood planks texture -->
+  <rect x="-50" y="470" width="1300" height="65" fill="url(#woodPlank)" opacity="0.95"/>
+  <!-- Wood plank lines (photorealistic detail) -->
+  <line x1="0" y1="470" x2="1200" y2="474" stroke="#6b4f0f" stroke-width="1.5" opacity="0.6"/>
+  <line x1="0" y1="476" x2="1200" y2="480" stroke="#9a7a20" stroke-width="0.8" opacity="0.4"/>
+  <line x1="0" y1="482" x2="1200" y2="486" stroke="#6b4f0f" stroke-width="1.5" opacity="0.6"/>
+  <line x1="0" y1="488" x2="1200" y2="492" stroke="#9a7a20" stroke-width="0.8" opacity="0.4"/>
+  <line x1="0" y1="494" x2="1200" y2="498" stroke="#6b4f0f" stroke-width="1.5" opacity="0.6"/>
+  <line x1="0" y1="500" x2="1200" y2="504" stroke="#9a7a20" stroke-width="0.8" opacity="0.4"/>
+  <line x1="0" y1="506" x2="1200" y2="510" stroke="#6b4f0f" stroke-width="1.5" opacity="0.6"/>
+  <line x1="0" y1="512" x2="1200" y2="516" stroke="#9a7a20" stroke-width="0.8" opacity="0.4"/>
+  <line x1="0" y1="518" x2="1200" y2="522" stroke="#6b4f0f" stroke-width="1.5" opacity="0.6"/>
+  <!-- Ship rail / gunwale -->
+  <rect x="-50" y="460" width="1300" height="14" fill="#5a3a0a" rx="3" opacity="0.9"/>
+  <rect x="-50" y="460" width="1300" height="3" fill="#8b6914" opacity="0.7"/>
+  <!-- Ship rigging ropes -->
+  <line x1="600" y1="0" x2="200" y2="465" stroke="url(#ropeGrad)" stroke-width="2.5" opacity="0.75"/>
+  <line x1="600" y1="0" x2="1000" y2="465" stroke="url(#ropeGrad)" stroke-width="2.5" opacity="0.75"/>
+  <line x1="600" y1="80" x2="100" y2="462" stroke="url(#ropeGrad)" stroke-width="1.8" opacity="0.55"/>
+  <line x1="600" y1="80" x2="1100" y2="462" stroke="url(#ropeGrad)" stroke-width="1.8" opacity="0.55"/>
+  <!-- Mast -->
+  <rect x="594" y="-20" width="12" height="485" fill="#6b4f0f" rx="3" opacity="0.88"/>
+  <rect x="596" y="-20" width="4" height="485" fill="#9a7a20" opacity="0.3"/>
+  <!-- Sail (furled) -->
+  <path d="M560,40 Q595,35 640,40 L650,200 Q595,205 545,200 Z" fill="#e8dcc0" opacity="0.75"/>
+  <path d="M555,45 Q595,38 645,45" stroke="#c4b090" stroke-width="1.5" fill="none" opacity="0.5"/>
+  <path d="M552,80 Q595,72 648,80" stroke="#c4b090" stroke-width="1.2" fill="none" opacity="0.4"/>
+  <path d="M549,120 Q595,110 650,120" stroke="#c4b090" stroke-width="1.2" fill="none" opacity="0.4"/>
+  <path d="M548,160 Q595,148 650,160" stroke="#c4b090" stroke-width="1.2" fill="none" opacity="0.4"/>
+
+  <!-- Wooden oar leaning against rail -->
+  <rect x="840" y="370" width="8" height="105" fill="#8b6914" rx="3" opacity="0.8" transform="rotate(-18, 844, 422)"/>
+  <ellipse cx="840" cy="368" rx="18" ry="7" fill="#7a5810" opacity="0.75" transform="rotate(-18, 840, 368)"/>
+
+  <!-- Greek vase / amphora on deck -->
+  <g transform="translate(980, 430)" filter="url(#dropShadow)">
+    <path d="M-12,-45 Q-16,0 -10,28 Q-5,48 0,52 Q5,48 10,28 Q16,0 12,-45 Z" fill="#c67c3a" opacity="0.9"/>
+    <path d="M-12,-45 Q0,-56 12,-45" stroke="#8b4f1e" stroke-width="2" fill="#d4892a"/>
+    <path d="M-11,-40 Q-19,-24 -18,-8" stroke="#8b4f1e" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+    <path d="M11,-40 Q19,-24 18,-8" stroke="#8b4f1e" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+    <ellipse cx="0" cy="52" rx="10" ry="3.5" fill="#6b3a12"/>
+    <!-- Greek meander decoration -->
+    <path d="M-7,-10 L-5,-10 L-5,-7 L-1,-7 L-1,-10 L1,-10 L1,-4 L-7,-4 Z" fill="#8b4f1e" opacity="0.6" transform="scale(0.8)"/>
+  </g>
+
+  <!-- Coiled rope on deck -->
+  <ellipse cx="200" cy="490" rx="32" ry="14" fill="none" stroke="#c4a35a" stroke-width="4" opacity="0.65"/>
+  <ellipse cx="200" cy="490" rx="22" ry="10" fill="none" stroke="#c4a35a" stroke-width="3" opacity="0.55"/>
+  <ellipse cx="200" cy="490" rx="12" ry="6" fill="none" stroke="#c4a35a" stroke-width="2.5" opacity="0.45"/>
+
+  <!-- ========== LEATHER HANDBAG (hero element, center) ========== -->
+  <g transform="translate(540, 340)" filter="url(#dropShadow)">
+    <!-- Bag shadow on deck -->
+    <ellipse cx="80" cy="148" rx="88" ry="14" fill="rgba(0,0,0,0.35)"/>
+
+    <!-- Main bag body -->
+    <rect x="0" y="30" width="160" height="115" rx="12" fill="url(#leatherMain)"/>
+
+    <!-- Leather texture — subtle highlight lines -->
+    <path d="M15,55 Q80,50 145,55" stroke="#9e6b45" stroke-width="1" fill="none" opacity="0.25"/>
+    <path d="M12,70 Q80,65 148,70" stroke="#9e6b45" stroke-width="1" fill="none" opacity="0.25"/>
+    <path d="M10,85 Q80,80 150,85" stroke="#9e6b45" stroke-width="0.8" fill="none" opacity="0.2"/>
+    <path d="M10,100 Q80,95 150,100" stroke="#9e6b45" stroke-width="0.8" fill="none" opacity="0.2"/>
+    <path d="M10,115 Q80,110 150,115" stroke="#9e6b45" stroke-width="0.8" fill="none" opacity="0.2"/>
+
+    <!-- Bag flap / top -->
+    <path d="M0,30 Q0,0 30,0 L130,0 Q160,0 160,30 L160,70 Q135,85 80,88 Q25,85 0,70 Z" fill="url(#leatherFlap)"/>
+    <!-- Flap texture highlight -->
+    <path d="M15,15 Q80,10 145,15" stroke="#b87d52" stroke-width="1.2" fill="none" opacity="0.3"/>
+    <path d="M8,30 Q80,24 152,30" stroke="#b87d52" stroke-width="1" fill="none" opacity="0.25"/>
+    <!-- Flap stitching -->
+    <path d="M12,4 Q80,-4 148,4" stroke="#c4a35a" stroke-width="1" stroke-dasharray="6 4" fill="none" opacity="0.55"/>
+    <path d="M8,65 Q80,78 152,65" stroke="#c4a35a" stroke-width="1" stroke-dasharray="5 3" fill="none" opacity="0.55"/>
+
+    <!-- Body stitching -->
+    <path d="M8,35 L8,138" stroke="#c4a35a" stroke-width="1" stroke-dasharray="5 3" fill="none" opacity="0.5"/>
+    <path d="M152,35 L152,138" stroke="#c4a35a" stroke-width="1" stroke-dasharray="5 3" fill="none" opacity="0.5"/>
+    <path d="M8,138 Q80,144 152,138" stroke="#c4a35a" stroke-width="1" stroke-dasharray="5 3" fill="none" opacity="0.5"/>
+
+    <!-- Central clasp / closure hardware (gold) -->
+    <rect x="62" y="72" width="36" height="22" rx="5" fill="url(#goldGrad)"/>
+    <rect x="65" y="75" width="30" height="16" rx="3" fill="#e8b820" opacity="0.6"/>
+    <!-- Clasp center button -->
+    <circle cx="80" cy="83" r="6" fill="url(#goldGrad)"/>
+    <circle cx="80" cy="83" r="4" fill="#f4d03f" opacity="0.8"/>
+    <circle cx="78" cy="81" r="1.5" fill="white" opacity="0.5"/>
+    <!-- Clasp screws -->
+    <circle cx="68" cy="83" r="2.5" fill="#d4ac0d"/>
+    <circle cx="92" cy="83" r="2.5" fill="#d4ac0d"/>
+
+    <!-- Handle / strap attachment rings (gold) -->
+    <rect x="22" y="-8" width="16" height="10" rx="3" fill="url(#goldGrad)"/>
+    <rect x="122" y="-8" width="16" height="10" rx="3" fill="url(#goldGrad)"/>
+
+    <!-- Handle -->
+    <path d="M30,0 Q30,-38 80,-42 Q130,-38 130,0" stroke="#8b5e3c" stroke-width="11" fill="none" stroke-linecap="round"/>
+    <path d="M30,0 Q30,-38 80,-42 Q130,-38 130,0" stroke="#6b4226" stroke-width="11" fill="none" stroke-linecap="round" opacity="0.5"/>
+    <path d="M30,0 Q30,-38 80,-42 Q130,-38 130,0" stroke="#a87050" stroke-width="7" fill="none" stroke-linecap="round"/>
+    <!-- Handle highlight -->
+    <path d="M35,-5 Q40,-38 80,-40 Q120,-38 125,-5" stroke="#b8805c" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.5"/>
+
+    <!-- Side gusset detail (3D effect) -->
+    <rect x="0" y="30" width="10" height="115" rx="4" fill="url(#leatherSide)" opacity="0.7"/>
+    <rect x="150" y="30" width="10" height="115" rx="4" fill="url(#leatherSide)" opacity="0.7"/>
+
+    <!-- Brand logo area (subtle embossing) -->
+    <text x="80" y="122" text-anchor="middle" font-family="Georgia, serif" font-size="9" fill="#4a2d14" opacity="0.5" letter-spacing="3" font-style="italic">ODYSSEUS</text>
+  </g>
+
+  <!-- Deck foreground detail (closer planks) -->
+  <rect x="-50" y="535" width="1300" height="6" fill="#3a2208" opacity="0.8"/>
+  <rect x="-50" y="545" width="1300" height="55" fill="#2a1804" opacity="0.9"/>
+
+  <!-- Greek column decoration (distant, right) -->
+  <g opacity="0.6" transform="translate(1050, 250)">
+    <rect x="0" y="0" width="22" height="130" fill="#d4c9b0" opacity="0.7" rx="2"/>
+    <rect x="-4" y="-8" width="30" height="12" fill="#c4b9a0" opacity="0.8" rx="2"/>
+    <rect x="-4" y="126" width="30" height="12" fill="#c4b9a0" opacity="0.8" rx="2"/>
+    <!-- Column fluting -->
+    <line x1="5" y1="4" x2="5" y2="126" stroke="#b8ad94" stroke-width="1" opacity="0.4"/>
+    <line x1="11" y1="4" x2="11" y2="126" stroke="#b8ad94" stroke-width="1" opacity="0.4"/>
+    <line x1="17" y1="4" x2="17" y2="126" stroke="#b8ad94" stroke-width="1" opacity="0.4"/>
+  </g>
+  <g opacity="0.5" transform="translate(1090, 270)">
+    <rect x="0" y="0" width="18" height="110" fill="#d4c9b0" opacity="0.65" rx="2"/>
+    <rect x="-3" y="-7" width="24" height="10" fill="#c4b9a0" opacity="0.7" rx="2"/>
+    <rect x="-3" y="106" width="24" height="10" fill="#c4b9a0" opacity="0.7" rx="2"/>
+    <line x1="4" y1="3" x2="4" y2="106" stroke="#b8ad94" stroke-width="1" opacity="0.4"/>
+    <line x1="9" y1="3" x2="9" y2="106" stroke="#b8ad94" stroke-width="1" opacity="0.4"/>
+    <line x1="14" y1="3" x2="14" y2="106" stroke="#b8ad94" stroke-width="1" opacity="0.4"/>
+  </g>
+
+  <!-- Distant sailing ship -->
+  <g opacity="0.55" transform="translate(140, 310)">
+    <path d="M0,50 Q8,48 16,50 Q20,48 24,50 L20,52 L4,52 Z" fill="#8b6914"/>
+    <path d="M10,0 L18,48 L2,48 Z" fill="#e8dcc0"/>
+    <rect x="9" y="-4" width="2" height="56" fill="#6b4f0f"/>
+  </g>
+
+  <!-- Atmospheric depth: light haze overlay -->
+  <rect x="0" y="0" width="1200" height="360" fill="rgba(235, 210, 168, 0.06)"/>
+</svg>

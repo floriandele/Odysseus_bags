@@ -12,12 +12,30 @@ interface ServiceMenuProps {
  * Provides: Add to cart, Return my bag, Repair my bag.
  *
  * On touch/hover:none devices the menu is rendered inline (CSS media query).
+ *
+ * ## Memory-leak prevention
+ * Toast messages are dismissed via `setTimeout`. Each timeout is tracked with
+ * `useRef` so it can be cleared in the cleanup function returned from `useEffect`
+ * (or when the component unmounts). This prevents `setState` calls on an
+ * unmounted component — a common source of React memory-leak warnings.
  */
 export function ServiceMenu({ product, onNavigateCart }: ServiceMenuProps): React.ReactElement {
   const { addItem } = useCart();
   const [open, setOpen] = React.useState(false);
   const [returnMsg, setReturnMsg] = React.useState("");
   const [repairMsg, setRepairMsg] = React.useState("");
+
+  const returnTimerRef = React.useRef<ReturnType<typeof setTimeout> | null>(null);
+  const repairTimerRef = React.useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Clear any pending timers when the component unmounts to avoid memory leaks
+  // and stale setState calls.
+  React.useEffect(() => {
+    return () => {
+      if (returnTimerRef.current !== null) clearTimeout(returnTimerRef.current);
+      if (repairTimerRef.current !== null) clearTimeout(repairTimerRef.current);
+    };
+  }, []);
 
   function handleAddToCart(): void {
     addItem(product);
@@ -27,13 +45,21 @@ export function ServiceMenu({ product, onNavigateCart }: ServiceMenuProps): Reac
 
   function handleReturn(): void {
     setReturnMsg(`Retour du sac "${product.name}" initié.`);
-    setTimeout(() => setReturnMsg(""), 3000);
+    if (returnTimerRef.current !== null) clearTimeout(returnTimerRef.current);
+    returnTimerRef.current = setTimeout(() => {
+      setReturnMsg("");
+      returnTimerRef.current = null;
+    }, 3000);
     setOpen(false);
   }
 
   function handleRepair(): void {
     setRepairMsg(`Demande de réparation pour "${product.name}" enregistrée.`);
-    setTimeout(() => setRepairMsg(""), 3000);
+    if (repairTimerRef.current !== null) clearTimeout(repairTimerRef.current);
+    repairTimerRef.current = setTimeout(() => {
+      setRepairMsg("");
+      repairTimerRef.current = null;
+    }, 3000);
     setOpen(false);
   }
 
@@ -53,6 +79,7 @@ export function ServiceMenu({ product, onNavigateCart }: ServiceMenuProps): Reac
         aria-haspopup="true"
         aria-expanded={open}
         aria-label={`Services pour ${product.name}`}
+        className={`service-menu__trigger${open ? " service-menu__trigger--active" : ""}`}
         style={{
           background: "var(--color-primary)",
           color: "white",
@@ -65,12 +92,6 @@ export function ServiceMenu({ product, onNavigateCart }: ServiceMenuProps): Reac
           cursor: "pointer",
           transition: "background 0.15s",
           width: "100%",
-        }}
-        onMouseEnter={(e) => {
-          (e.currentTarget as HTMLButtonElement).style.background = "var(--color-primary-hover)";
-        }}
-        onMouseLeave={(e) => {
-          (e.currentTarget as HTMLButtonElement).style.background = "var(--color-primary)";
         }}
       >
         Services ▾
