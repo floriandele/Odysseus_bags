@@ -67,6 +67,8 @@ function ProductCard({
         border: "1px solid var(--color-border)",
         opacity: product.inStock ? 1 : 0.75,
         transform: hovered ? "translateY(-4px)" : "translateY(0)",
+        position: "relative",
+        zIndex: hovered ? 10 : 0,
       }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
