@@ -288,7 +288,7 @@ function CartItemRow({
         }}
         aria-hidden="true"
       >
-        {!imgError ? (
+        {!imgError && image ? (
           <img
             src={image}
             alt=""
@@ -309,11 +309,15 @@ function CartItemRow({
             fontSize: "1rem",
             color: "var(--color-text)",
             marginBottom: "4px",
+            wordBreak: "break-word",
+            overflowWrap: "break-word",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
           }}
         >
           {name}
         </h3>
-        <p style={{ fontSize: "0.8rem", color: "var(--color-text-muted)" }}>
+        <p style={{ fontSize: "0.8rem", color: "var(--color-text-muted)", wordBreak: "break-word", overflowWrap: "break-word" }}>
           {material}
         </p>
         <p

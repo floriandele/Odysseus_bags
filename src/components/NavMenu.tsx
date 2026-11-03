@@ -189,6 +189,7 @@ const toastStyle: React.CSSProperties = {
   borderRadius: "var(--radius-md)",
   fontSize: "0.9rem",
   boxShadow: "var(--shadow-lg)",
-  zIndex: 100,
+  // z-index must be > 100 (above dropdown z-50) but < 200 (below sticky header)
+  zIndex: 150,
   animation: "fadeIn 0.2s ease",
 };

@@ -83,7 +83,7 @@ function ProductCard({
           position: "relative",
         }}
       >
-        {!imgError ? (
+        {!imgError && product.image ? (
           <img
             src={product.image}
             alt={product.name}
@@ -142,6 +142,8 @@ function ProductCard({
               fontSize: "1.2rem",
               marginTop: "4px",
               color: "var(--color-text)",
+              wordBreak: "break-word",
+              overflowWrap: "break-word",
             }}
           >
             {product.name}
@@ -163,6 +165,8 @@ function ProductCard({
           style={{
             fontSize: "0.8rem",
             color: "var(--color-text-muted)",
+            wordBreak: "break-word",
+            overflowWrap: "break-word",
           }}
         >
           <span style={{ fontStyle: "italic" }}>{product.material}</span>
