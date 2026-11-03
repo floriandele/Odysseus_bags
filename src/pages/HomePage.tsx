@@ -89,7 +89,7 @@ export function HomePage(): React.ReactElement {
               onClick={() => setSection("cart")}
             >
               Panier
-              {totalItems > 0 && (
+              {Number.isFinite(totalItems) && totalItems > 0 && (
                 <span
                   aria-label={`${totalItems} articles`}
                   style={{

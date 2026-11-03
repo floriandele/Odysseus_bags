@@ -108,8 +108,10 @@ button {
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-lg);
-  z-index: 50;
+  /* z-index: above content (50) but below toasts (150) and header (200) */
+  z-index: 100;
   overflow: hidden;
+  will-change: transform, opacity;
 
   /* Hidden by default */
   opacity: 0;
@@ -153,4 +155,28 @@ button {
   overflow: hidden;
   clip: rect(0 0 0 0);
   white-space: nowrap;
+}
+
+/* ─── Animations ──────────────────────────────────────────────────────────── */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ─── Product card transitions — GPU-accelerated ─────────────────────────── */
+[data-testid="product-card"] {
+  will-change: transform;
+}
+
+/* ─── Cart item text overflow guard ─────────────────────────────────────── */
+[data-testid="cart-item"] h3,
+[data-testid="cart-item"] p {
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
