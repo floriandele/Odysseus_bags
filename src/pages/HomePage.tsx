@@ -3,13 +3,14 @@ import { products } from "@/data/products";
 import { ProductGallery } from "@/components/ProductGallery";
 import { OdysseusBg } from "@/components/OdysseusBg";
 import { ShoppingCart } from "@/components/ShoppingCart";
+import { RepairFlow } from "@/components/RepairFlow";
 import { useCart } from "@/hooks/useCart";
 
 /**
  * HomePage — main landing page with hero section, product gallery and cart.
  */
 export function HomePage(): React.ReactElement {
-  const [section, setSection] = React.useState<"products" | "cart">("products");
+  const [section, setSection] = React.useState<"products" | "cart" | "repair">("products");
   const [heroHovered, setHeroHovered] = React.useState(false);
   const { totalItems } = useCart();
 
@@ -83,6 +84,12 @@ export function HomePage(): React.ReactElement {
               onClick={() => setSection("products")}
             >
               Produits
+            </NavButton>
+            <NavButton
+              active={section === "repair"}
+              onClick={() => setSection("repair")}
+            >
+              🔧 Réparation
             </NavButton>
             <NavButton
               active={section === "cart"}
@@ -263,6 +270,27 @@ export function HomePage(): React.ReactElement {
               </h2>
             </div>
             <ShoppingCart onContinueShopping={() => setSection("products")} />
+          </>
+        )}
+
+        {section === "repair" && (
+          <>
+            <div style={{ marginBottom: "32px" }}>
+              <h2
+                style={{
+                  fontFamily: "var(--font-sans)",
+                  fontSize: "2rem",
+                  color: "var(--color-text)",
+                  marginBottom: "8px",
+                }}
+              >
+                Service Réparation
+              </h2>
+              <p style={{ color: "var(--color-text-muted)", fontSize: "1rem" }}>
+                Confiez votre sac Odysseus à nos artisans pour une réparation experte.
+              </p>
+            </div>
+            <RepairFlow onCancel={() => setSection("products")} />
           </>
         )}
       </main>
