@@ -10,6 +10,7 @@ import { useCart } from "@/hooks/useCart";
  */
 export function HomePage(): React.ReactElement {
   const [section, setSection] = React.useState<"products" | "cart">("products");
+  const [heroHovered, setHeroHovered] = React.useState(false);
   const { totalItems } = useCart();
 
   return (
@@ -173,10 +174,13 @@ export function HomePage(): React.ReactElement {
             Des sacs à main en cuir d'exception, façonnés à la main pour celles
             et ceux qui valorisent l'authenticité et le voyage.
           </p>
+          {/* Use state-based hover to avoid direct DOM mutation in event handlers */}
           <button
             onClick={() => setSection("products")}
+            onMouseEnter={() => setHeroHovered(true)}
+            onMouseLeave={() => setHeroHovered(false)}
             style={{
-              background: "var(--color-primary)",
+              background: heroHovered ? "var(--color-primary-hover)" : "var(--color-primary)",
               color: "white",
               border: "none",
               borderRadius: "var(--radius-md)",
@@ -187,18 +191,7 @@ export function HomePage(): React.ReactElement {
               cursor: "pointer",
               transition: "background 0.15s, transform 0.12s",
               boxShadow: "var(--shadow-md)",
-            }}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLButtonElement).style.background =
-                "var(--color-primary-hover)";
-              (e.currentTarget as HTMLButtonElement).style.transform =
-                "translateY(-1px)";
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLButtonElement).style.background =
-                "var(--color-primary)";
-              (e.currentTarget as HTMLButtonElement).style.transform =
-                "translateY(0)";
+              transform: heroHovered ? "translateY(-1px)" : "translateY(0)",
             }}
           >
             Découvrir la Collection
@@ -306,11 +299,19 @@ function NavButton({
   active: boolean;
   onClick: () => void;
 }): React.ReactElement {
+  const [hovered, setHovered] = React.useState(false);
+
   return (
     <button
       onClick={onClick}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
       style={{
-        background: active ? "var(--color-primary-soft)" : "none",
+        background: active
+          ? "var(--color-primary-soft)"
+          : hovered
+          ? "var(--color-bg-soft)"
+          : "none",
         border: "none",
         cursor: "pointer",
         padding: "8px 16px",
@@ -321,15 +322,6 @@ function NavButton({
         transition: "all 0.12s",
         display: "flex",
         alignItems: "center",
-      }}
-      onMouseEnter={(e) => {
-        if (!active)
-          (e.currentTarget as HTMLButtonElement).style.background =
-            "var(--color-bg-soft)";
-      }}
-      onMouseLeave={(e) => {
-        if (!active)
-          (e.currentTarget as HTMLButtonElement).style.background = "none";
       }}
     >
       {children}
